@@ -1,11 +1,8 @@
 import {getDispatch} from '../../reduxStore';
 
-const getHome = (params) => {
+const getHome = () => {
   getDispatch()({
     type: 'HOME_ACTION',
-    payload: {
-      params,
-    },
   });
 };
 export default {

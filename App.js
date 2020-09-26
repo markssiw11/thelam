@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {StatusBar, View, Image, Platform} from 'react-native';
+import {
+  StatusBar,
+  View,
+  Image,
+  Platform,
+  YellowBox,
+  LogBox,
+} from 'react-native';
+LogBox.ignoreLogs(['Remote debugger']);
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import configureStore from './src/redux/reduxStore';

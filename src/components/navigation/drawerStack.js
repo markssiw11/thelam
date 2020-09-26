@@ -1,10 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import homeDrawer from './homeDrawer';
-import HomScreen from '../home/index';
+import DrawerScreen from '../drawer';
 const Stack = createStackNavigator();
 
-function HomeStack() {
+function DrawerStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -18,9 +17,9 @@ function HomeStack() {
           },
         }}
         name="drawer"
-        component={HomScreen}
+        component={DrawerScreen}
       />
     </Stack.Navigator>
   );
 }
-export default HomeStack;
+export default DrawerStack;

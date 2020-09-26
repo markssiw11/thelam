@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from './homeStack';
+import DrawerStack from './drawerStack';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function AoScreen() {
@@ -26,6 +27,8 @@ function NavigationScreen() {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="ao" component={AoScreen} />
+        <Tab.Screen name="drawerStack" component={DrawerStack} />
+
         {/* <Tab.Screen name="Home" component={BScreen} /> */}
       </Tab.Navigator>
     </NavigationContainer>

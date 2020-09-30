@@ -6,7 +6,11 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 import {BlurView, VibrancyView} from '@react-native-community/blur';
-function DrawerScreen({open, onPress}) {
+function DrawerScreen({open, onPress, navigation}) {
+  const navToUser = () => {
+    onPress();
+    navigation.navigate('user');
+  };
   return (
     <View style={styles.ctn}>
       <Modal
@@ -25,8 +29,10 @@ function DrawerScreen({open, onPress}) {
               style={styles.background}
               blurType="dark"
             />
-            <View style={styles.avatar}>
-              <Text style={styles.textAvatar}>L</Text>
+            <View onPress={navToUser} style={styles.avatar}>
+              <TouchableOpacity onPress={navToUser} style={styles.circle}>
+                <Text style={styles.textAvatar}>L</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.moreInfo}>
               <Text style={styles.textMoreInfo}>Long nguyễn</Text>
@@ -57,15 +63,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatar: {
+    marginLeft: 20,
+
+    position: 'absolute',
+  },
+  circle: {
     width: diameter,
     height: diameter,
     borderRadius: diameter / 2,
     backgroundColor: 'purple',
-    marginLeft: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    overflow: 'visible',
-    position: 'absolute',
   },
   textAvatar: {
     color: 'white',

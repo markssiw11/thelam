@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import color from '../../utils/color';
-import Lottie from '../../container/lottie/index';
+import Lottie from '../../components/lottie/index';
 import {connect} from 'react-redux';
 import HomeAction from '../../redux/action/home/index';
 
@@ -26,7 +26,7 @@ function HeaderView({isLoading}) {
       <View style={styles.slide}>
         <Image
           source={item.source}
-          style={{width: itemWidth, height: sliderHight}}
+          style={{width: itemWidth, height: sliderHight - 30}}
         />
       </View>
     );
@@ -35,7 +35,6 @@ function HeaderView({isLoading}) {
     const {contentOffset} = nativeEvent;
     const {y} = contentOffset;
     setOffsetY(y);
-    console.log('offsetY======', offsetY);
     // HomeAction.onRefresh();
   };
   const pagination = () => {
@@ -44,7 +43,7 @@ function HeaderView({isLoading}) {
         dotsLength={data.length}
         activeDotIndex={activeSlide}
         containerStyle={{
-          marginTop: sliderHight - 50,
+          marginTop: sliderHight - 80,
           flex: 1,
           alignSelf: 'flex-end',
           position: 'absolute',
@@ -73,7 +72,6 @@ function HeaderView({isLoading}) {
     // progress = -offsetY / refreshingHeight;
     autoPlay = true;
   }
-  console.log('isLoading======', isLoading);
   return (
     <ScrollView
       style={{flex: 1}}

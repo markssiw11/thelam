@@ -3,7 +3,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import homeDrawer from './homeDrawer';
 import HomScreen from '../home/index';
 const Stack = createStackNavigator();
-
+import UserScreen from '../user';
+import CSBackButton from '../../components/csBackButton';
 function HomeStack() {
   return (
     <Stack.Navigator>
@@ -11,7 +12,6 @@ function HomeStack() {
         options={{
           title: '',
           gestureEnabled: true,
-          // headerTintColor: '#fff',
           headerShown: false,
           headerTitleStyle: {
             fontWeight: 'bold',
@@ -19,6 +19,22 @@ function HomeStack() {
         }}
         name="drawer"
         component={HomScreen}
+      />
+      <Stack.Screen
+        options={{
+          title: 'Thông tin cá nhân',
+          gestureEnabled: true,
+          // headerTintColor: '#fff',
+          // headerStyle: {
+          //   backgroundColor: '#f4511e',
+          // },
+          headerLeft: <CSBackButton />,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        name="user"
+        component={UserScreen}
       />
     </Stack.Navigator>
   );

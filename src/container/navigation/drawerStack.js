@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import DrawerScreen from '../drawer';
+import UserScreen from '../user';
 const Stack = createStackNavigator();
 
 function DrawerStack() {
@@ -19,6 +20,7 @@ function DrawerStack() {
         name="drawer"
         component={DrawerScreen}
       />
+      <Stack.Screen name="user" component={UserScreen} />
     </Stack.Navigator>
   );
 }

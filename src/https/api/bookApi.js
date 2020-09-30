@@ -1,7 +1,26 @@
 import httpClient from '../connect/httpClient';
+import axios from 'axios';
 
 export const getBookApi = () => {
-  const endPoint =
-    'https://goodreadsraygorodskijv1.p.rapidapi.com/GetlistopiasByBookId';
-  return httpClient.app.post(endPoint);
+  return axios({
+    method: 'GET',
+    url: 'https://kvstore.p.rapidapi.com/collections',
+    headers: {
+      'content-type': 'application/octet-stream',
+      'x-rapidapi-host': 'kvstore.p.rapidapi.com',
+      'x-rapidapi-key': '2c09b00152mshb4d6ee675c3a794p11b4fbjsn1fbed886b7b9',
+      useQueryString: true,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export const getCourses = () => {
+  const endPoint = 'http://localhost:5035/api/courses';
+  return httpClient.app.get(endPoint);
 };

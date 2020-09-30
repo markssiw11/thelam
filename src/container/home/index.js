@@ -15,6 +15,7 @@ import HeaderView from '../header';
 import color from '../../utils/color';
 import DrawerScreen from '../drawer';
 import HomeAction from '../../redux/action/home/index';
+import Imperative from '../animation/imperative';
 function Home({navigation, isLoading, thang}) {
   const [open, setOpen] = useState(false);
   const onPress = () => {
@@ -22,7 +23,7 @@ function Home({navigation, isLoading, thang}) {
   };
   useEffect(() => {
     HomeAction.getHome();
-  });
+  }, []);
   const searchView = () => {
     return (
       <View style={styles.searchCtn}>
@@ -62,9 +63,10 @@ function Home({navigation, isLoading, thang}) {
     );
   };
   const renderNavDrawer = () => {
-    return <DrawerScreen open={open} onPress={onPress} />;
+    return (
+      <DrawerScreen open={open} navigation={navigation} onPress={onPress} />
+    );
   };
-
   return (
     <View style={{flex: 1}}>
       {renderNavDrawer()}

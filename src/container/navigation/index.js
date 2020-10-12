@@ -14,24 +14,22 @@ function AoScreen() {
     </View>
   );
 }
-function BScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
 function NavigationScreen() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({route}) => ({tabBarVisible: isTabBarVisible(route)})}>
         <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="ao" component={AoScreen} />
-        <Tab.Screen name="drawerStack" component={DrawerStack} />
-
-        {/* <Tab.Screen name="Home" component={BScreen} /> */}
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
 export default NavigationScreen;
+const isTabBarVisible = (route) => {
+  const routeName = route.state
+    ? route.state.routes[route.state.index].name
+    : route.params
+    ? route.params.screen
+    : 'Home';
+  return !['user'].includes(routeName);
+};

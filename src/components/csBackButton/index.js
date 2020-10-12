@@ -1,21 +1,25 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {NavigationActions, withNavigation} from '@react-navigation/compat';
 
-function CSBackButton() {
-  console.log('back----------');
+function CSBackButton({icon, navigation}) {
+  const onPress = () => {
+    navigation.dispatch(NavigationActions.back());
+  };
   return (
-    <TouchableOpacity>
+    <TouchableOpacity style={{width: 40}} onPress={onPress}>
       <Icon
         style={{
           paddingLeft: 10,
-          paddingTop: 3,
+          paddingTop: 5,
         }}
-        name="search"
-        color="white"
-        size={20}
+        solid
+        name={icon}
+        color="black"
+        size={35}
       />
     </TouchableOpacity>
   );
 }
-export default CSBackButton;
+export default withNavigation(CSBackButton);

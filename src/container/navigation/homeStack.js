@@ -1,6 +1,5 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import homeDrawer from './homeDrawer';
 import HomScreen from '../home/index';
 const Stack = createStackNavigator();
 import UserScreen from '../user';
@@ -22,13 +21,8 @@ function HomeStack() {
       />
       <Stack.Screen
         options={{
-          title: 'Thông tin cá nhân',
-          gestureEnabled: true,
-          // headerTintColor: '#fff',
-          // headerStyle: {
-          //   backgroundColor: '#f4511e',
-          // },
-          headerLeft: <CSBackButton />,
+          title: 'Chỉnh sửa thông tin cá nhân',
+          headerLeft: (props) => <CSBackButton icon="angle-left" />,
           headerTitleStyle: {
             fontWeight: 'bold',
           },
@@ -38,5 +32,16 @@ function HomeStack() {
       />
     </Stack.Navigator>
   );
+}
+
+function getTabBarVisible(route) {
+  const routeName = route.state
+    ? route.state.routes[route.state.index].name
+    : route.params?.screen || 'Home';
+
+  if (routeName === 'Details') {
+    return false;
+  }
+  return true;
 }
 export default HomeStack;

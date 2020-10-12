@@ -13,6 +13,7 @@ function DrawerStack() {
           gestureEnabled: true,
           // headerTintColor: '#fff',
           headerShown: false,
+          tabBarVisible: false,
           headerTitleStyle: {
             fontWeight: 'bold',
           },

@@ -11,7 +11,7 @@ LogBox.ignoreLogs(['Remote debugger']);
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import configureStore from './src/redux/reduxStore';
-import Root from './src/components/root/Root';
+import Root from './src/container/root/Root';
 
 class App extends Component<{}> {
   renderContent = () => {

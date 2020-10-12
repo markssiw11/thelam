@@ -22,7 +22,7 @@ function Home({navigation, isLoading, thang}) {
     setOpen(!open);
   };
   useEffect(() => {
-    HomeAction.getHome();
+    // HomeAction.getHome();
   }, []);
   const searchView = () => {
     return (

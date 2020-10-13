@@ -1,24 +1,56 @@
 import * as React from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, Platform} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import Animated, {color} from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
+import ImagePicker from 'react-native-image-crop-picker';
 const width = Dimensions.get('window').width;
-function BottomSheetScreen({sheetRef, fall, onPressClose}) {
-  const onPressCloseBottomSheet = () => {
-    console.log('close======');
-    // onPressClose();
-    sheetRef?.current?.snapTo(1);
+function BottomSheetScreen({sheetRef, fall, onPressFirst}) {
+  const openImage = () => {
+    ImagePicker.openPicker({
+      multiple: true,
+    }).then(async (images) => {
+      await cloudinaryUpload(images);
+    });
   };
-  const renderInner = () => {
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          console.log('onPress=1======1====');
-        }}>
-        <Text>hello</Text>
-      </TouchableOpacity>
+  const cloudinaryUpload = async (photo) => {
+    const data = new FormData();
+    // data.append('api_key', '754195751163448');
+    console.log('photo=====', photo);
+    const newPhoto = photo[0];
+    // let fileUri = newPhoto.uri || newPhoto.path;
+    let fileUri =
+      Platform.OS == 'ios'
+        ? newPhoto.path.replace('file://', '/private')
+        : photo.uri;
+    // if (fileUri === newPhoto.path && !fileUri.startsWith('file://')) {
+    //   fileUri = `file://${fileUri}`;
+    // }
+    data.append('file', {
+      name: newPhoto.filename,
+      uri: fileUri,
+      size: newPhoto.size,
+      type: newPhoto.mime,
+    });
+    data.append('upload_preset', 'thelam');
+    // data.append('cloud_name', 'thelam');
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/dlitgelel/image/upload',
+      {
+        method: 'post',
+        body: data,
+      },
     );
+    const file = await res.json();
+    console.log('file======', file);
+  };
+  const openCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then((image) => {
+      onPressFirst(image[0]?.path);
+    });
   };
   const renderContent = () => (
     <View
@@ -28,27 +60,18 @@ function BottomSheetScreen({sheetRef, fall, onPressClose}) {
         height: 450,
         alignItems: 'center',
       }}>
-      <Text
-        style={{fontSize: 24, fontWeight: '600'}}
-        onPress={() => {
-          console.log('onclose======');
-        }}>
+      <Text style={{fontSize: 24, fontWeight: '600'}} onPress={() => {}}>
         Đổi avatar
       </Text>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn} onPress={openImage}>
         <Text style={styles.btnText}>Chọn avatar từ thư viện</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.btn]}
-        onPress={() => {
-          console.log('onclose======');
-        }}>
+      <TouchableOpacity style={[styles.btn]} onPress={openCamera}>
         <Text style={styles.btnText}>Chụp ảnh</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.btn]}
         onPress={() => {
-          console.log('onclose======');
           sheetRef?.current?.snapTo(1);
         }}>
         <Text style={styles.btnText}>Đóng</Text>
@@ -76,7 +99,6 @@ function BottomSheetScreen({sheetRef, fall, onPressClose}) {
       borderRadius={10}
       callbackNode={fall}
       enabledGestureInteraction={true}
-      // renderContent={renderInner}
       renderHeader={renderHeader}
     />
     // </>

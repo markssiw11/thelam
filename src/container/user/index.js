@@ -8,10 +8,15 @@ import modelUser from './model';
 import BottomSheetScreen from '../../components/bottomSheet';
 function User() {
   const bs = createRef();
-  const fall = new Animated.Value(1);
-  const [form, setForm] = React.useState(modelUser);
-  const onPressSnapPoint = () => bs.current?.snapTo(0);
-  const onPressClose = () => bs.current?.snapTo(1);
+  const [fall, setFall] = useState(new Animated.Value(1));
+  const [form, setForm] = useState(modelUser);
+  const [image, setImage] = useState(
+    'https://images.unsplash.com/photo-1602279029118-e7b3ba3fbdb9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+  );
+  const onPressSnapPoint = () => {
+    bs.current?.snapTo(0);
+    // setFall(new Animated.Value(1));
+  };
   const formatText = (text, key) => {
     const newForm = {...form};
     newForm[key] = text;
@@ -20,7 +25,10 @@ function User() {
   const avatarView = () => {
     return (
       <TouchableOpacity onPress={onPressSnapPoint} style={styles.avatarCtn}>
-        <Avatar.Text
+        <Avatar.Image
+          source={{
+            uri: image,
+          }}
           theme={{colors: {primary: '#00DAC3'}}}
           size={100}
           color="white"
@@ -29,12 +37,16 @@ function User() {
       </TouchableOpacity>
     );
   };
+  const onPressChooseImage = (path) => {
+    bs?.current?.snapTo(1);
+    setImage(path);
+  };
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
       <BottomSheetScreen
         sheetRef={bs}
         fall={fall}
-        onPressClose={onPressClose}
+        onPressFirst={onPressChooseImage}
       />
       <Animated.View
         style={{opacity: Animated.add(0.3, Animated.multiply(fall, 1.0))}}>

@@ -8,6 +8,9 @@ const vars = {
   csSteelBlue: '#4682b4',
   csTomato: '#ff6347',
   csWhite: '#ffff',
+  csAqua: '#00ffff',
+  csCadetblue: '#5f9ea0',
+  csDodgerblue: '#1e90ff',
 };
 export default {
   vars,

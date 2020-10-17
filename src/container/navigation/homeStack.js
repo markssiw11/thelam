@@ -4,6 +4,7 @@ import HomScreen from '../home/index';
 const Stack = createStackNavigator();
 import UserScreen from '../user';
 import CSBackButton from '../../components/csBackButton';
+import SliderScreen from '../slider';
 function HomeStack() {
   return (
     <Stack.Navigator>
@@ -29,6 +30,17 @@ function HomeStack() {
         }}
         name="user"
         component={UserScreen}
+      />
+      <Stack.Screen
+        options={{
+          title: 'Chỉnh sửa thông tin cá nhân',
+          headerLeft: (props) => <CSBackButton icon="angle-left" />,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        name="slider"
+        component={SliderScreen}
       />
     </Stack.Navigator>
   );

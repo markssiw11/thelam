@@ -9,10 +9,9 @@ import {
   RefreshControl,
 } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import color from '../../utils/color';
+import csColor from '../../utils/csColor';
 import Lottie from '../../components/lottie/index';
 import {connect} from 'react-redux';
-import HomeAction from '../../redux/action/home/index';
 
 const sliderWidth = Dimensions.get('window').width;
 const sliderHight = Dimensions.get('window').height / 4;
@@ -53,7 +52,7 @@ function HeaderView({isLoading}) {
           height: 10,
           borderRadius: 5,
           marginHorizontal: 0,
-          backgroundColor: color.vars.white,
+          backgroundColor: csColor.vars.csTomato,
         }}
         inactiveDotStyle={
           {
@@ -74,7 +73,7 @@ function HeaderView({isLoading}) {
   }
   return (
     <ScrollView
-      style={{flex: 1}}
+      style={{height: sliderHight - 20}}
       // refreshControl={<RefreshControl refreshing={true} />}
       onScroll={onScroll}>
       <Lottie

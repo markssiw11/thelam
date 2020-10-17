@@ -12,10 +12,13 @@ import {connect} from 'react-redux';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HeaderView from '../header';
-import color from '../../utils/color';
+import color from '../../utils/csColor';
 import DrawerScreen from '../drawer';
-import HomeAction from '../../redux/action/home/index';
 import Imperative from '../animation/imperative';
+import Category from '../category';
+import Shuffle from '../animation/shuffle';
+import Sequence from '../animation/sequence';
+import PopularBook from '../book/popularBook';
 function Home({navigation, isLoading, thang}) {
   const [open, setOpen] = useState(false);
   const onPress = () => {
@@ -68,10 +71,13 @@ function Home({navigation, isLoading, thang}) {
     );
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, marginBottom: 50}}>
       {renderNavDrawer()}
       {renderNavBar()}
-      <HeaderView />
+      <ScrollView>
+        <HeaderView />
+        <Category navigation={navigation} />
+      </ScrollView>
     </View>
   );
 }

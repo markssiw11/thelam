@@ -5948,6 +5948,11 @@ react-native-paper@^4.2.0:
     color "^3.1.2"
     react-native-safe-area-view "^0.14.9"
 
+react-native-read-more-text@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-read-more-text/-/react-native-read-more-text-1.1.2.tgz#3f64aee61ec4d3109437f4125f10e49eccdee65a"
+  integrity sha512-FIQhOpvikUanwPRl9QVBYmx6Wx7IXxXH/jlzElOLcP+NSgFLw2fRzSekQUq0yicymZsi7cAWW5TtIj8FHWtNDw==
+
 react-native-reanimated@^1.13.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.13.0.tgz#1ee5d27d34bd2cee7dfad4ae9a3673300872c917"

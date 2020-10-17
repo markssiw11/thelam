@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Avatar} from 'react-native-paper';
 import TextInputCommon from '../../components/textInput';
-import color from '../../utils/color';
+import color from '../../utils/csColor';
 import modelUser from './model';
 import BottomSheetScreen from '../../components/bottomSheet';
 function User() {

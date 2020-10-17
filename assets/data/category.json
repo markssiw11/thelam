@@ -1,0 +1,58 @@
+{
+  "first": [
+    {
+      "title": "Tất cả",
+      "id": 0
+    },
+    {
+      "title": "Tiểu thuyết",
+      "id": 1
+    },
+    {
+      "title": "Kiếm hiệp",
+      "id": 2
+    }
+  ],
+  "second": [
+    {
+      "title": "Xuyên không",
+      "id": 3
+    },
+    {
+      "title": "Khoa học",
+      "id": 4
+    },
+    {
+      "title": "Trinh thám",
+      "id": 5
+    }
+  ],
+  "third": [
+    {
+      "title": "Tiên hiệp",
+      "id": 3
+    },
+    {
+      "title": "Thiếu nhi",
+      "id": 4
+    },
+    {
+      "title": "Viễn tưởng",
+      "id": 5
+    }
+  ],
+  "fourth": [
+    {
+      "title": "Phiêu Lưu",
+      "id": 3
+    },
+    {
+      "title": "Hoạt hình",
+      "id": 4
+    },
+    {
+      "title": "Ngụ ngôn",
+      "id": 5
+    }
+  ],
+}

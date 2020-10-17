@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import color from '../../utils/color';
 import Modal from 'react-native-modal';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
-import {BlurView, VibrancyView} from '@react-native-community/blur';
+import {BlurView} from '@react-native-community/blur';
 function DrawerScreen({open, onPress, navigation}) {
   const navToUser = () => {
     onPress();

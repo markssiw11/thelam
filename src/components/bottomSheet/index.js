@@ -8,23 +8,20 @@ function BottomSheetScreen({sheetRef, fall, onPressFirst}) {
   const openImage = () => {
     ImagePicker.openPicker({
       multiple: true,
-    }).then(async (images) => {
-      await cloudinaryUpload(images);
+    }).then((images) => {
+      cloudinaryUpload(images);
     });
   };
-  const cloudinaryUpload = async (photo) => {
+  const cloudinaryUpload = (photo) => {
     const data = new FormData();
-    // data.append('api_key', '754195751163448');
-    console.log('photo=====', photo);
+    data.append('api_key', '754195751163448');
     const newPhoto = photo[0];
-    // let fileUri = newPhoto.uri || newPhoto.path;
-    let fileUri =
-      Platform.OS == 'ios'
-        ? newPhoto.path.replace('file://', '/private')
-        : photo.uri;
+    let fileUri = newPhoto.uri || newPhoto.path;
     // if (fileUri === newPhoto.path && !fileUri.startsWith('file://')) {
     //   fileUri = `file://${fileUri}`;
     // }
+    fileUri =
+      Platform.OS == 'ios' ? fileUri.replace('file://', '/private') : photo.uri;
     data.append('file', {
       name: newPhoto.filename,
       uri: fileUri,
@@ -32,16 +29,20 @@ function BottomSheetScreen({sheetRef, fall, onPressFirst}) {
       type: newPhoto.mime,
     });
     data.append('upload_preset', 'thelam');
-    // data.append('cloud_name', 'thelam');
-    const res = await fetch(
-      'https://api.cloudinary.com/v1_1/dlitgelel/image/upload',
-      {
-        method: 'post',
-        body: data,
-      },
-    );
-    const file = await res.json();
-    console.log('file======', file);
+    data.append('cloud_name', 'thelam');
+    console.log('data 1=====', data);
+
+    fetch('https://api.cloudinary.com/v1_1/dlitgelel/image/upload', {
+      method: 'post',
+      body: data,
+    })
+      .then((data) => data.json())
+      .then((res) => {
+        console.log('res======', res);
+      })
+      .catch((error) => {
+        console.log('error===', error);
+      });
   };
   const openCamera = () => {
     ImagePicker.openCamera({

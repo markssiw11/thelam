@@ -1,8 +1,6 @@
 import React, {Component, useState} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
-// import {TextInput, List, Colors} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import color from '../../utils/color';
 type Props = {
   placeholder?: string,
   value: string | number | null,

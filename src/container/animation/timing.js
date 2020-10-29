@@ -36,8 +36,8 @@ class AnimationTiming extends Component {
       outputRange: [0, 1, 0],
     });
     const movingMargin = this.animatedValue.interpolate({
-      inputRange: [0, 0.5, 1],
-      outputRange: [0, 300, 0],
+      inputRange: [0, 0.9, 1],
+      outputRange: [0, 30, 28],
     });
     const textSize = this.animatedValue.interpolate({
       inputRange: [0, 0.5, 1],
@@ -49,7 +49,7 @@ class AnimationTiming extends Component {
     });
     return (
       <View style={styles.container}>
-        <Animated.View
+        {/* <Animated.View
           style={{
             marginLeft,
             height: 30,
@@ -65,7 +65,7 @@ class AnimationTiming extends Component {
             width: 40,
             backgroundColor: 'blue',
           }}
-        />
+        /> */}
         <Animated.View
           style={{
             marginLeft: movingMargin,
@@ -75,7 +75,7 @@ class AnimationTiming extends Component {
             backgroundColor: 'orange',
           }}
         />
-        <Animated.Text
+        {/* <Animated.Text
           style={{
             fontSize: textSize,
             marginTop: 10,
@@ -92,7 +92,7 @@ class AnimationTiming extends Component {
             backgroundColor: 'black',
           }}>
           <Text style={{color: 'white'}}>Hello from TransformX</Text>
-        </Animated.View>
+        </Animated.View> */}
       </View>
     );
   }

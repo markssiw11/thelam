@@ -1,0 +1,2 @@
+export const REGISTER_USER = 'REGISTER_USER';
+export const LOGIN_WITH_FIRE_BASE = 'LOGIN_WITH_FIRE_BASE';

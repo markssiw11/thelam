@@ -7,14 +7,27 @@ import styles from './styles';
 import Animated, {cond} from 'react-native-reanimated';
 function Category({navigation}) {
   const [open, setOpen] = useState(false);
-  const onPress = () => {
-    navigation?.navigate('slider');
+  const onPress = (i) => {
+    console.log('i=======', i);
+    switch (i) {
+      case 0:
+        navigation?.navigate('slider');
+        break;
+      case 1:
+        navigation?.navigate('slider');
+        break;
+      default:
+        break;
+    }
   };
   const renderRow = (data = []) => {
     return (
       <View style={styles.row}>
-        {data.map((e) => (
-          <TouchableOpacity key={e.id} style={styles.typeCtn} onPress={onPress}>
+        {data.map((e, i) => (
+          <TouchableOpacity
+            key={e.id}
+            style={styles.typeCtn}
+            onPress={() => onPress(i)}>
             <Text style={styles.typeText}>{e?.title}</Text>
           </TouchableOpacity>
         ))}

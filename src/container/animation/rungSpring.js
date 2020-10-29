@@ -65,38 +65,48 @@ class Snappable extends Component {
 
     const TOSS_SEC = 0.2;
 
-    const dragY = new Value(0);
+    const dragX = new Value(0);
     const state = new Value(-1);
-    const dragVY = new Value(0);
+    const dragVX = new Value(0);
 
     this._onGestureEvent = event([
-      {nativeEvent: {translationY: dragY, velocityX: dragVY, state: state}},
+      {nativeEvent: {translationX: dragX, velocityX: dragVX, state: state}},
     ]);
 
-    const transY = new Value();
-    const prevDragY = new Value(0);
+    const transX = new Value();
+    const prevDragX = new Value(0);
 
     const clock = new Clock();
 
+    // If transX has not yet been defined we stay in the center (value is 0).
+    // When transX is defined, it means drag has already occured. In such a case
+    // we want to snap to -100 if the final position of the block is below 0
+    // and to 100 otherwise.
+    // We also take into account gesture velocity at the moment of release. To
+    // do that we calculate final position of the block as if it was moving for
+    // TOSS_SEC seconds with a constant speed the block had when released (dragVX).
+    // So the formula for the final position is:
+    //   finalX = transX + TOSS_SEC * dragVelocityX
+    //
     const snapPoint = cond(
-      lessThan(add(transY, multiply(TOSS_SEC, dragVY)), 0),
+      lessThan(add(transX, multiply(TOSS_SEC, dragVX)), 0),
       -100,
       100,
     );
 
-    this._transY = cond(
+    this._transX = cond(
       eq(state, State.ACTIVE),
       [
         stopClock(clock),
-        set(transY, add(transY, sub(dragY, prevDragY))),
-        set(prevDragY, dragY),
-        transY,
+        set(transX, add(transX, sub(dragX, prevDragX))),
+        set(prevDragX, dragX),
+        transX,
       ],
       [
-        set(prevDragY, 0),
+        set(prevDragX, 0),
         set(
-          transY,
-          cond(defined(transY), runSpring(clock, transY, dragVY, snapPoint), 0),
+          transX,
+          cond(defined(transX), runSpring(clock, transX, dragVX, snapPoint), 0),
         ),
       ],
     );
@@ -110,7 +120,7 @@ class Snappable extends Component {
         minDist={10}
         onGestureEvent={this._onGestureEvent}
         onHandlerStateChange={this._onGestureEvent}>
-        <Animated.View style={{transform: [{translateY: this._transY}]}}>
+        <Animated.View style={{transform: [{translateX: this._transX}]}}>
           {children}
         </Animated.View>
       </PanGestureHandler>
@@ -145,7 +155,6 @@ const styles = StyleSheet.create({
   box: {
     width: BOX_SIZE,
     height: BOX_SIZE,
-    borderRadius: BOX_SIZE / 2,
     borderColor: '#F5FCFF',
     alignSelf: 'center',
     backgroundColor: 'plum',

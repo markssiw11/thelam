@@ -1,4 +1,4 @@
-import React, {createRef, useState} from 'react';
+import React, {createRef, useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Avatar} from 'react-native-paper';
@@ -6,16 +6,18 @@ import TextInputCommon from '../../components/textInput';
 import color from '../../utils/csColor';
 import modelUser from './model';
 import BottomSheetScreen from '../../components/bottomSheet';
-function User() {
+import * as userAction from '../../redux/action/user';
+import {connect} from 'react-redux';
+function User(props) {
   const bs = createRef();
   const [fall, setFall] = useState(new Animated.Value(1));
+  const [register, setRegister] = useState(false);
   const [form, setForm] = useState(modelUser);
   const [image, setImage] = useState(
     'https://images.unsplash.com/photo-1602279029118-e7b3ba3fbdb9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
   );
   const onPressSnapPoint = () => {
     bs.current?.snapTo(0);
-    // setFall(new Animated.Value(1));
   };
   const formatText = (text, key) => {
     const newForm = {...form};
@@ -70,7 +72,9 @@ function User() {
           value={form?.email}
           onPress={(text) => formatText(text, 'email')}
         />
-        <TouchableOpacity style={styles.btn} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => props.onPressRegister(form)}>
           <Text style={styles.btnText}>Đăng ký thông tin</Text>
         </TouchableOpacity>
       </Animated.View>
@@ -99,4 +103,9 @@ const styles = StyleSheet.create({
     color: color.vars.csWhite,
   },
 });
-export default User;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPressRegister: (form) => dispatch(userAction.registerUser(form)),
+  };
+};
+export default connect(null, mapDispatchToProps)(User);

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "103104305110",
+    "firebase_url": "https://rn-aup.firebaseio.com",
+    "project_id": "rn-aup",
+    "storage_bucket": "rn-aup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103104305110:android:6b52a50b3025c1dfb8b677",
+        "android_client_info": {
+          "package_name": "com.thelam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103104305110-bmcsbtnpeqakqk0iv5bh2vnl4t0qo5ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvxLnfBq-onTbZK5WL19X9xz7X19JmAyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103104305110-bmcsbtnpeqakqk0iv5bh2vnl4t0qo5ld.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "103104305110-ursvcv2f510evhove9rnvs1fhfe2etog.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.thelam"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -29,8 +29,8 @@ class TextInputCommon extends Component<Props> {
         ) : null}
         <View style={{flex: 1}}>
           <TextInput
-            autoCapitalize={'characters'}
             autoCorrect={false}
+            autoCapitalize={'none'}
             icon="eye"
             keyboardType={keyboardType}
             style={styles.textInput}

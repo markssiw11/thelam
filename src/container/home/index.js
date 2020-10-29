@@ -19,13 +19,14 @@ import Category from '../category';
 import Shuffle from '../animation/shuffle';
 import Sequence from '../animation/sequence';
 import PopularBook from '../book/popularBook';
+import HomeAction from '../../redux/action/home';
 function Home({navigation, isLoading, thang}) {
   const [open, setOpen] = useState(false);
   const onPress = () => {
     setOpen(!open);
   };
   useEffect(() => {
-    // HomeAction.getHome();
+    HomeAction.getHome();
   }, []);
   const searchView = () => {
     return (
@@ -74,10 +75,8 @@ function Home({navigation, isLoading, thang}) {
     <View style={{flex: 1, marginBottom: 50}}>
       {renderNavDrawer()}
       {renderNavBar()}
-      <ScrollView>
-        <HeaderView />
-        <Category navigation={navigation} />
-      </ScrollView>
+      <PopularBook />
+      <Sequence />
     </View>
   );
 }

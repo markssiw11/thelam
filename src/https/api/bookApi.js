@@ -21,6 +21,6 @@ export const getBookApi = () => {
 };
 
 export const getCourses = () => {
-  const endPoint = 'http://localhost:5035/api/courses';
+  const endPoint = '/api/courses';
   return httpClient.app.get(endPoint);
 };

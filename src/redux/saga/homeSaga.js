@@ -10,9 +10,7 @@ import {
 
 function* getHomeSaga({payload}) {
   try {
-    console.log('payload=======', payload);
     const apiRespone = yield call(getCourses);
-    console.log('apiRespone========', apiRespone);
   } catch (error) {
     console.log('error======', error);
   }

@@ -8,10 +8,13 @@ import immutablePersistReconciler from './helper/immurablePersistStateReconciler
 
 import rootReducer from './reducer/reducers';
 import rootSaga from '../redux/saga';
+const REDUX_PERSIST_WHITE_LIST = ['login'];
 const persistConfig = {
   key: 'root',
   debug: true,
   storage: AsyncStorage,
+  whitelist: REDUX_PERSIST_WHITE_LIST,
+
   transforms: [immutablePersistTransform],
   stateReconciler: immutablePersistReconciler,
 };

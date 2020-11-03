@@ -7,6 +7,7 @@ type Props = {
   icon?: string,
   iconColor?: string,
   keyboardType?: String,
+  iconSize?: number,
   onPress?: () => avoid,
 };
 
@@ -18,13 +19,14 @@ class TextInputCommon extends Component<Props> {
       onPress,
       icon,
       iconColor,
+      iconSize,
       keyboardType,
     } = this.props;
     return (
       <View style={styles.btn}>
         {icon ? (
           <View style={styles.iconCtn}>
-            <Icon name={icon} color={iconColor} size={20} />
+            <Icon name={icon} color={iconColor} size={iconSize || 20} />
           </View>
         ) : null}
         <View style={{flex: 1}}>

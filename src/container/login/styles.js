@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     width: DEVICE_SCREEN_WIDTH - 20,
+    overflow: 'hidden',
   },
   avatarCtn: {
     alignSelf: 'center',

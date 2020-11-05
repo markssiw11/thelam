@@ -8,8 +8,9 @@ const styles = StyleSheet.create({
     backgroundColor: csColor.vars.csSteelBlue,
     borderRadius: 5,
     alignItems: 'center',
-    width: DEVICE_SCREEN_WIDTH - 20,
+    flexDirection: 'column',
     overflow: 'hidden',
+    width: DEVICE_SCREEN_WIDTH - 40,
   },
   avatarCtn: {
     alignSelf: 'center',
@@ -22,11 +23,62 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     fontSize: 16,
     color: csColor.vars.csWhite,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   ctn: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: csColor.vars.csBackground,
+  },
+  loginCtn: {
+    backgroundColor: csColor.vars.csWhite,
+    marginHorizontal: 10,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    width: DEVICE_SCREEN_WIDTH - 20,
+    height: DEVICE_SCREEN_WIDTH * 1.1,
+    position: 'absolute',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 5.46,
+
+    elevation: 9,
+  },
+  registerCtn: {
+    marginHorizontal: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    width: DEVICE_SCREEN_WIDTH - 40,
+    backgroundColor: csColor.vars.csDeepChampagne,
+  },
+  headerTxt: {
+    fontSize: 28,
+  },
+  headerCtn: {
+    flex: 1 / 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loginInput: {
+    flex: 3 / 4,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontFamily: 'Cochin',
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    // backgroundColor: 'transparent',
   },
 });
 export default styles;

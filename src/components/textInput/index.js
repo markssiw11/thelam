@@ -1,5 +1,11 @@
 import React, {Component, useState} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 type Props = {
   placeholder?: string,
@@ -21,9 +27,13 @@ class TextInputCommon extends Component<Props> {
       iconColor,
       iconSize,
       keyboardType,
+      secureTextEntry,
+      style,
+      iconRight,
+      onPressIconRight,
     } = this.props;
     return (
-      <View style={styles.btn}>
+      <View style={[styles.btn, {...style}]}>
         {icon ? (
           <View style={styles.iconCtn}>
             <Icon name={icon} color={iconColor} size={iconSize || 20} />
@@ -34,6 +44,7 @@ class TextInputCommon extends Component<Props> {
             autoCorrect={false}
             autoCapitalize={'none'}
             icon="eye"
+            secureTextEntry={secureTextEntry}
             keyboardType={keyboardType}
             style={styles.textInput}
             numberOfLines={1}
@@ -42,6 +53,11 @@ class TextInputCommon extends Component<Props> {
             onChangeText={(text) => onPress(text, value)}
           />
         </View>
+        {iconRight && (
+          <TouchableOpacity onPress={onPressIconRight} style={styles.iconCtn}>
+            <Icon name={iconRight} color={iconColor} size={15} />
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

@@ -29,7 +29,7 @@ const ModalScreen = (props) => {
                 onPress={() => {
                   props.onClose();
                 }}>
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text style={styles.textStyle}>Đóng</Text>
               </TouchableHighlight>
             </View>
           </View>

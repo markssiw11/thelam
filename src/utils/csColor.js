@@ -11,6 +11,8 @@ const vars = {
   csAqua: '#00ffff',
   csCadetblue: '#5f9ea0',
   csDodgerblue: '#1e90ff',
+  csXanthic: '#F2F230',
+  csDeepChampagne: '#EDCF8E',
 };
 export default {
   vars,

@@ -39,6 +39,12 @@ const logoutWithFireBase = (state, {payload}) => {
 const handleLoginError = (state, {payload}) => {
   return state.merge({
     isLoading: false,
+    error: 'Mật khẩu hoặc tài khoản không đúng',
+  });
+};
+const dismissError = (state, {payload}) => {
+  return state.merge({
+    error: null,
   });
 };
 const reducer = createReducer(INITIAL_STATE, {
@@ -47,5 +53,6 @@ const reducer = createReducer(INITIAL_STATE, {
   [types.HANDLE_LOGIN_WITH_FIRE_BASE]: handleLoginWithFireBase,
   [types.HANDLE_LOGOUT_WITH_FIRE_BASE]: handleLogoutWithFireBase,
   [types.HANDLE_LOGIN_ERROR]: handleLoginError,
+  [types.DISMISS_ERROR]: dismissError,
 });
 export default reducer;

@@ -27,8 +27,16 @@ export function handleLogoutWithFireBase(data) {
   };
 }
 
-export function handleErrorLogin() {
+export function handleErrorLogin(error) {
   return {
     type: types.HANDLE_LOGIN_ERROR,
+    payload: {
+      error,
+    },
+  };
+}
+export function dismissError() {
+  return {
+    type: types.DISMISS_ERROR,
   };
 }

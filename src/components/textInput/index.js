@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {DEVICE_SCREEN_WIDTH} from '../../utils/deviceHelper';
 type Props = {
   placeholder?: string,
   value: string | number | null,
@@ -15,22 +16,24 @@ type Props = {
   keyboardType?: String,
   iconSize?: number,
   onPress?: () => avoid,
+  onBlur?: () => avoid,
+  onChangeText?: () => avoid,
+  style?: any,
+  touched?: string,
 };
 
 class TextInputCommon extends Component<Props> {
   render() {
     const {
-      placeholder,
-      value,
-      onPress,
       icon,
       iconColor,
       iconSize,
-      keyboardType,
-      secureTextEntry,
       style,
       iconRight,
       onPressIconRight,
+      iconRightSize,
+      iconRightStyle,
+      iconRightColor,
     } = this.props;
     return (
       <View style={[styles.btn, {...style}]}>
@@ -40,22 +43,17 @@ class TextInputCommon extends Component<Props> {
           </View>
         ) : null}
         <View style={{flex: 1}}>
-          <TextInput
-            autoCorrect={false}
-            autoCapitalize={'none'}
-            icon="eye"
-            secureTextEntry={secureTextEntry}
-            keyboardType={keyboardType}
-            style={styles.textInput}
-            numberOfLines={1}
-            placeholder={placeholder}
-            value={value}
-            onChangeText={(text) => onPress(text, value)}
-          />
+          <TextInput style={styles.textInput} {...this.props} />
         </View>
         {iconRight && (
-          <TouchableOpacity onPress={onPressIconRight} style={styles.iconCtn}>
-            <Icon name={iconRight} color={iconColor} size={15} />
+          <TouchableOpacity
+            onPress={onPressIconRight}
+            style={[styles.iconCtn, {...iconRightStyle}]}>
+            <Icon
+              name={iconRight}
+              color={iconRightColor}
+              size={iconRightSize || 15}
+            />
           </TouchableOpacity>
         )}
       </View>
@@ -65,25 +63,22 @@ class TextInputCommon extends Component<Props> {
 const styles = StyleSheet.create({
   btn: {
     marginHorizontal: 10,
-    marginTop: 10,
+    marginVertical: 10,
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderColor: '#a9a9a9',
+    width: DEVICE_SCREEN_WIDTH - 20,
   },
   iconCtn: {
     justifyContent: 'center',
     alignItems: 'center',
     width: 50,
     paddingLeft: 5,
-    // backgroundColor: '#E7E7E7',
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
+    marginBottom: 5,
   },
   textInput: {
     height: 40,
-    // backgroundColor: '#E7E7E7',
     borderRadius: 5,
-    // borderBottomWidth: 1,
   },
 });
 

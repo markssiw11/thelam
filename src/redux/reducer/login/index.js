@@ -1,6 +1,8 @@
 import createReducer from '../createReducer';
 import Immutable from 'seamless-immutable';
 import * as types from '../../action/types';
+import {type} from 'ramda';
+import errorParse from '../../../utils/errorParse';
 const INITIAL_STATE = Immutable({
   data: {},
   isLoading: false,
@@ -37,14 +39,21 @@ const logoutWithFireBase = (state, {payload}) => {
   });
 };
 const handleLoginError = (state, {payload}) => {
+  const {error = {}} = payload;
+  const errorName = errorParse?.parseErrorLogin(error?.nativeErrorMessage);
   return state.merge({
     isLoading: false,
-    error: 'Mật khẩu hoặc tài khoản không đúng',
+    error: errorName,
   });
 };
 const dismissError = (state, {payload}) => {
   return state.merge({
     error: null,
+  });
+};
+const registerWithFireBase = (state, {payload}) => {
+  return state.merge({
+    isLoading: true,
   });
 };
 const reducer = createReducer(INITIAL_STATE, {
@@ -54,5 +63,6 @@ const reducer = createReducer(INITIAL_STATE, {
   [types.HANDLE_LOGOUT_WITH_FIRE_BASE]: handleLogoutWithFireBase,
   [types.HANDLE_LOGIN_ERROR]: handleLoginError,
   [types.DISMISS_ERROR]: dismissError,
+  [types.REGISTER_WITH_FIREBASE]: registerWithFireBase,
 });
 export default reducer;

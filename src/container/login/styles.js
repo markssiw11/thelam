@@ -80,5 +80,18 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     // backgroundColor: 'transparent',
   },
+  txtInput: {
+    marginHorizontal: 10,
+    marginTop: 10,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    height: 40,
+    width: DEVICE_SCREEN_WIDTH - 40,
+    borderColor: '#a9a9a9',
+  },
+  txt: {
+    color: csColor.vars.csTomato,
+    marginLeft: 20,
+  },
 });
 export default styles;

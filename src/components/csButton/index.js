@@ -1,15 +1,24 @@
 import React, {useEffect} from 'react';
 import {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import Animated from 'react-native-reanimated';
 import {DEVICE_SCREEN_WIDTH} from '../../utils/deviceHelper';
 import csColor from '../../utils/csColor';
-const CSButton = ({disable, onPress, title}) => {
+const CSButton = ({disable, onPress, title, style}) => {
+  const opacity = disable ? {opacity: 0.6, ...styles.btn, ...style} : {};
+  const TouchCmp = disable ? TouchableWithoutFeedback : TouchableOpacity;
   return (
-    <TouchableOpacity
-      style={[styles.btn, disable ? {opacity: 0.4} : null]}
-      onPress={() => true}>
-      <Text style={styles.buttonText}>{title}</Text>
-    </TouchableOpacity>
+    <Animated.View style={opacity}>
+      <TouchCmp style={[styles.btn, {...style}]} onPress={onPress}>
+        <Text style={styles.buttonText}>{title}</Text>
+      </TouchCmp>
+    </Animated.View>
   );
 };
 
@@ -35,17 +44,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    // overflow: 'hidden',
-    // width: DEVICE_SCREEN_WIDTH - 40,
     flexDirection: 'row',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,
     },
+    width: DEVICE_SCREEN_WIDTH - 20,
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
-
     elevation: 8,
   },
 });

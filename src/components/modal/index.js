@@ -7,34 +7,46 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
+import Lottie from '../../components/lottie/index';
+import LottieView from 'lottie-react-native';
 
+import {
+  DEVICE_SCREEN_WIDTH,
+  DEVICE_SCREEN_HEIGHT,
+} from '../../utils/deviceHelper';
 const ModalScreen = (props) => {
-  const {open} = props;
+  const {open, isLoading, error, title} = props;
+  if (isLoading) {
+    return <Lottie isLoading={true} />;
+  }
+  const renderContent = () => {
+    return (
+      <View style={styles.centeredView}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>{title || 'Thông báo'}</Text>
+
+            <Text style={styles.modalText}>{error}</Text>
+
+            <TouchableHighlight
+              style={{...styles.openButton, backgroundColor: '#2196F3'}}
+              onPress={() => {
+                props.onClose();
+              }}>
+              <Text style={styles.textStyle}>Đóng</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    );
+  };
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={open}
       onRequestClose={() => {}}>
-      {open && (
-        <View style={styles.centeredView}>
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>{props.title || 'Thông báo'}</Text>
-
-              <Text style={styles.modalText}>{props.error}</Text>
-
-              <TouchableHighlight
-                style={{...styles.openButton, backgroundColor: '#2196F3'}}
-                onPress={() => {
-                  props.onClose();
-                }}>
-                <Text style={styles.textStyle}>Đóng</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </View>
-      )}
+      {open && renderContent()}
     </Modal>
   );
 };
@@ -76,6 +88,16 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+  ctn: {
+    flex: 1,
+    position: 'absolute',
+    width: DEVICE_SCREEN_WIDTH,
+    height: DEVICE_SCREEN_HEIGHT,
+    backgroundColor: 'rgba(88, 101, 94, 0.4)',
+    overflow: 'visible',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

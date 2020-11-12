@@ -1,19 +1,30 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
-
+import {connect} from 'react-redux';
 import styles from './styles';
 import * as loginAction from '../../redux/action/login';
-
-function Main() {
+import LoginScreen from '../login/loginScreen';
+import ModalScreen from '../../components/modal';
+import BackGround from '../../components/background';
+function Main(props) {
   const dispatch = useDispatch();
   const onLogout = () => dispatch(loginAction.logoutWithFireBase());
-  return (
-    <View style={styles.ctn}>
-      <TouchableOpacity onPress={onLogout} style={styles.btn}>
-        <Text style={styles.txtBtn}>hello</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  if (!props.rehydrated) {
+    return <ModalScreen isLoading={true} />;
+  }
+  if (props.loginStatus) {
+    return <BackGround />;
+  } else {
+    return <LoginScreen {...props} />;
+  }
 }
-export default Main;
+
+const mapStateToProps = (state) => ({
+  isLoading: state.login.isLoading,
+  userName: state.login?.data?.email,
+  error: state.login?.error,
+  loginStatus: state.login.loginStatus,
+  rehydrated: state._persist?.rehydrated,
+});
+export default connect(mapStateToProps)(Main);

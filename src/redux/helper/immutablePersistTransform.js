@@ -1,7 +1,7 @@
 import R from 'ramda';
 import Immutable from 'seamless-immutable';
 import {createTransform} from 'redux-persist';
-const REDUX_PERSIST_WHITE_LIST = ['login'];
+import {REDUX_PERSIST_WHITE_LIST} from '../reduxStore';
 // is this object already Immutable?
 const isImmutable = R.has('asMutable');
 

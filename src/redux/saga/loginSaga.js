@@ -14,7 +14,6 @@ function* loginWithFireBase({payload}) {
   const {data} = payload;
   try {
     const {email, pass} = data;
-    console.log('email, pass', email, pass);
     const apiResponse = yield auth().signInWithEmailAndPassword(email, pass);
     yield put(loginAction.handleLogInWithFireBase(apiResponse));
   } catch (error) {
@@ -39,7 +38,22 @@ function* logoutWithFireBase(payload) {
   }
 }
 
+function* registerWithFirebase({payload}) {
+  try {
+    const {data} = payload;
+    const {email, pass} = data;
+    const apiResponse = yield auth().createUserWithEmailAndPassword(
+      email,
+      pass,
+    );
+    yield put(loginAction.handleLogInWithFireBase(apiResponse));
+  } catch (error) {
+    yield put(loginAction.handleErrorLogin(error));
+  }
+}
+
 export default function* rootSaga() {
   yield takeEvery(types.LOGIN_WITH_FIRE_BASE, loginWithFireBase);
   yield takeEvery(types.LOGOUT_WITH_FIRE_BASE, logoutWithFireBase);
+  yield takeEvery(types.REGISTER_WITH_FIREBASE, registerWithFirebase);
 }

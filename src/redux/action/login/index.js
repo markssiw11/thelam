@@ -40,3 +40,21 @@ export function dismissError() {
     type: types.DISMISS_ERROR,
   };
 }
+
+export function registerWithFireBase(data) {
+  return {
+    type: types.REGISTER_WITH_FIREBASE,
+    payload: {
+      data,
+    },
+  };
+}
+
+export function handleRegisterWithFireBase(data) {
+  return {
+    type: types.HANDLE_REGISTER_WITH_FIREBASE,
+    payload: {
+      data,
+    },
+  };
+}

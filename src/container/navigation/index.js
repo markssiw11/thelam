@@ -8,16 +8,11 @@ import AuthStack from './authStack';
 import MainStack from './MainStack';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-function NavigationScreen({loginStatus}) {
-  console.log('loginStatus', loginStatus);
+function NavigationScreen() {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={({route}) => ({tabBarVisible: false})}>
-        {!loginStatus ? (
-          <Tab.Screen name="Login" component={AuthStack} />
-        ) : (
-          <Tab.Screen name="Main" component={MainStack} />
-        )}
+        <Tab.Screen name="Main" component={MainStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
